@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import Navbar from "../components/HomeComponents/Navbar";
-import { GetStart, MainButtons, MainPost, Testimonials, TopRatingOn } from "../components/HomeComponents/HomeContents";
+import { GetStart, MainButtons, MainPost, SearchCard, Testimonials, TopRatingOn } from "../components/HomeComponents/HomeContents";
 import Footer from "../components/HomeComponents/Footer";
 
 function Home(props) {
@@ -16,13 +16,18 @@ function Home(props) {
             <Box sx={{
                 marginTop: '40px',
             }}>
+                <SearchCard />
+            </Box>
+            {/* <Box sx={{
+                marginTop: '40px',
+            }}>
                 <MainPost />
             </Box>
             <Box sx={{
                 marginTop: '40px',
             }}>
                 <MainButtons />
-            </Box>
+            </Box> */}
             <Box sx={{
                 marginTop: '40px',
             }}>
