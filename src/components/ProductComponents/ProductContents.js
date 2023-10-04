@@ -228,7 +228,7 @@ export function ProductCover(props) {
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'start',
-                alignItems: 'center',
+                margin: '10px',
             }}>
                 <Box sx={{
                     backgroundColor: '#D9D9D9',
@@ -236,28 +236,37 @@ export function ProductCover(props) {
                     height: '300px',
                     borderRadius: '10px',
 
-                    margin: '10px',
                 }}>
                 </Box>
 
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    marginLeft: '10px',
+
+                    fontSize: '20px',
+                    
+                    margin: '20px',
+                    marginLeft: '40px',
                 }}>
-                    <Box>
+                    <Box sx={{
+                        marginBottom: '2px',
+                    }}>
                         Product A
                     </Box>
-                    <Box>
+                    <Box sx={{
+                        marginBottom: '2px',
+                    }}>
                         $ 100
                     </Box>
                     <Rating rating={4} />
-                    <Box>
+                    <Box sx={{
+                        marginTop: 'auto',
+                        marginBottom: '0px',
+                    }}>
                         Company Name
                     </Box>
                 </Box>
             </Box>
-
         </Box>
     )
 }
@@ -289,4 +298,114 @@ function Rating(props) {
             {getStar(rating)}
         </Box>
     )
+}
+
+export function ProductInfoBody(props) {
+    const info = [
+        'Production Information A',
+        'Production Information B',
+        'Production Information C',
+        'Production Information D',
+        'Production Information E',
+        'Production Information F',
+    ];
+    return (
+        <Box>
+            <Box sx={{
+                fontSize: '20px',
+                fontWeight: 'bold',
+
+                borderBottomStyle: 'solid',
+                borderWidth: '1px',
+                paddingBottom: '10px',
+            }}>
+                About the product
+            </Box>
+            <Box sx={{
+                fontSize: '20px',
+            }}>
+                <ul>
+                    {info.map((element) => {
+
+                        return (
+                            <li style={{
+                                padding: '2px',
+                            }}>
+                                {element}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </Box>
+        </Box>
+    );
+}
+
+export function ProductInfoProCon(props) {
+    const advantages = [
+        'Advantage 1',
+        'Advantage 2',
+        'Advantage 3',
+        'Advantage 4',
+    ];
+    const disadvantages = [
+        'Disadvantage 1',
+        'Disadvantage 2',
+        'Disadvantage 3',
+        'Disadvantage 4',
+    ];
+    return (
+        <Box sx={{
+
+        }}>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+
+                fontSize: '20px',
+
+                borderBottomStyle: 'solid',
+                borderWidth: '1px',
+                paddingBottom: '10px',
+            }}>
+                Pros & Cons
+            </Box>
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-evenly',
+                alignItems: 'center',
+
+                fontSize: '20px',
+            }}>
+                <ul>
+                    {advantages.map((element) => {
+
+                        return (
+                            <li style={{
+                                padding: '2px',
+                            }}>
+                                {element}
+                            </li>
+                        );
+                    })}
+                </ul>
+
+                <ul>
+                    {disadvantages.map((element) => {
+
+                        return (
+                            <li style={{
+                                padding: '2px',
+                            }}>
+                                {element}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </Box>
+        </Box>
+    );
 }

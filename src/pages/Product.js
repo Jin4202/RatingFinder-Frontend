@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import Navbar from "../components/HomeComponents/Navbar";
 import Footer from "../components/HomeComponents/Footer";
-import { ProductCover, SearchOptions, Searchbar } from "../components/ProductComponents/ProductContents";
+import { ProductCover, ProductInfoBody, ProductInfoProCon, SearchOptions, Searchbar } from "../components/ProductComponents/ProductContents";
 
 function Product(props) {
     return (
@@ -38,6 +38,22 @@ function Product(props) {
                     width: '80%',
                 }}>
                     <ProductCover />
+                </Box>
+
+                <Box sx={{
+                    color: '#000000',
+                    marginTop: '20px',
+                    width: '80%',
+                }}>
+                    <ProductInfoBody />
+                </Box>
+
+                <Box sx={{
+                    color: '#000000',
+                    marginTop: '20px',
+                    width: '80%',
+                }}>
+                    <ProductInfoProCon />
                 </Box>
             </Box>
 

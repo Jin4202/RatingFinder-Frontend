@@ -8,6 +8,7 @@ export default function Footer(props) {
             justifyContent: 'space-evenly',
             
             fontSize: '15px',
+            marginTop: '10px',
         }}>
             <Box>
                 Rating Finder
