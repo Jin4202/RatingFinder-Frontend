@@ -1,8 +1,10 @@
-import { Box, Button, FormControl, InputLabel, MenuItem, Select, Slider } from '@mui/material';
+import { Box, Button, FormControl, MenuItem, Select, Slider } from '@mui/material';
 import MainImg from './MainPageImg.png';
 import { useState } from 'react';
 
 export function SearchCard(props) {
+    const brands = props.brands;
+    const types = props.types;
     return (
         <Box sx={{
             display: 'grid',
@@ -19,7 +21,7 @@ export function SearchCard(props) {
                 <></>
             </Box>
             <Box>
-                <SearchOptions />
+                <SearchOptions brands={brands} types={types}/>
             </Box>
             <Box sx={{
                 marginLeft: '20px',
@@ -64,6 +66,8 @@ function Searchbar(props) {
 }
 
 function SearchOptions(props) {
+    const brands = props.brands;
+    const types = props.types;
     return (
         <Box sx={{
             display: 'flex',
@@ -92,9 +96,11 @@ function SearchOptions(props) {
                     <MenuItem value="">
                         <em>Product</em>
                     </MenuItem>
-                    <MenuItem value={'Headphone'}>Headphone</MenuItem>
-                    <MenuItem value={'Smartphone'}>Smartphone</MenuItem>
-                    <MenuItem value={'TV'}>TV</MenuItem>
+                    {types.length > 0 ? types.map((type) => {
+                        return (
+                            <MenuItem value={type}>{type}</MenuItem>
+                        )
+                    }) : <MenuItem value={'loading'}>loading..</MenuItem>}
                 </SearchDropdown>
             </Box>
             <Box sx={{
@@ -109,9 +115,12 @@ function SearchOptions(props) {
                     <MenuItem value="">
                         <em>Brand</em>
                     </MenuItem>
-                    <MenuItem value={'Apple'}>Apple</MenuItem>
-                    <MenuItem value={'Sennheiser'}>Sennheiser</MenuItem>
-                    <MenuItem value={'Sony'}>Sony</MenuItem>
+                    {console.log(brands)}
+                    {brands.length > 0 ? brands.map((brand) => {
+                        return (
+                            <MenuItem value={brand}>{brand}</MenuItem>
+                        )
+                    }) : <MenuItem value={'loading'}>loading..</MenuItem>}
                 </SearchDropdown>
             </Box>
             <Box sx={{

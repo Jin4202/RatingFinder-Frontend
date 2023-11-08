@@ -3,7 +3,21 @@ import Navbar from "../components/HomeComponents/Navbar";
 import Footer from "../components/HomeComponents/Footer";
 import { ProductCover, ProductInfoBody, ProductInfoProCon, SearchOptions, Searchbar } from "../components/ProductComponents/ProductContents";
 
+import { SITE_URL } from "../URL/url";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+
 function Product(props) {
+    const [fetchData, setFetchData] = useState([]);
+    useEffect(() => {
+        axios.get(SITE_URL + "/product/1").then((res) => {
+            setFetchData(res.data);
+        }).catch((err) => {
+            console.log("Error: " + err);
+        });
+    }, [])
+
     return (
         <Box sx={{
             backgroundColor: '#545F71',
@@ -39,6 +53,7 @@ function Product(props) {
                 }}>
                     <ProductCover />
                 </Box>
+                <img src={`data:image/png;base64, ${fetchData.image}`} alt="Test"/>
 
                 <Box sx={{
                     color: '#000000',
