@@ -115,7 +115,6 @@ function SearchOptions(props) {
                     <MenuItem value="">
                         <em>Brand</em>
                     </MenuItem>
-                    {console.log(brands)}
                     {brands.length > 0 ? brands.map((brand) => {
                         return (
                             <MenuItem value={brand}>{brand}</MenuItem>

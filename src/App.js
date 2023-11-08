@@ -14,7 +14,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/pricing" element={<Pricing />} />
         <Route exact path="/about" element={<About />} />
-        <Route exact path="/product" element={<Product />} />
+        <Route exact path="/product/:id" element={<Product />} />
       </Routes>
     </BrowserRouter>
   );

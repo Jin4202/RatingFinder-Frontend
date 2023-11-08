@@ -35,6 +35,8 @@ export function Searchbar(props) {
 }
 
 export function SearchOptions(props) {
+    const brands = props.brands;
+    const types = props.types;
     return (
         <Box sx={{
             display: 'flex',
@@ -74,9 +76,11 @@ export function SearchOptions(props) {
                         <MenuItem value="">
                             <em>Product</em>
                         </MenuItem>
-                        <MenuItem value={'Headphone'}>Headphone</MenuItem>
-                        <MenuItem value={'Smartphone'}>Smartphone</MenuItem>
-                        <MenuItem value={'TV'}>TV</MenuItem>
+                        {types.length > 0 ? types.map((type) => {
+                            return (
+                                <MenuItem value={type}>{type}</MenuItem>
+                            )
+                        }) : <MenuItem value={'loading'}>loading..</MenuItem>}
                     </SearchDropdown>
                 </Box>
                 <Box sx={{
@@ -95,9 +99,11 @@ export function SearchOptions(props) {
                         <MenuItem value="">
                             <em>Brand</em>
                         </MenuItem>
-                        <MenuItem value={'Apple'}>Apple</MenuItem>
-                        <MenuItem value={'Sennheiser'}>Sennheiser</MenuItem>
-                        <MenuItem value={'Sony'}>Sony</MenuItem>
+                        {brands.length > 0 ? brands.map((brand) => {
+                            return (
+                                <MenuItem value={brand}>{brand}</MenuItem>
+                            )
+                        }) : <MenuItem value={'loading'}>loading..</MenuItem>}
                     </SearchDropdown>
                 </Box>
             </Box>
@@ -215,6 +221,12 @@ function SearchSlider(props) {
 }
 
 export function ProductCover(props) {
+    const product = props.data;
+    const name = product.name;
+    const price = product.price;
+    const rating = product.rating;
+    const image = product.image;
+    const brand = product.brand;
     return (
         <Box sx={{
             display: 'flex',
@@ -231,12 +243,17 @@ export function ProductCover(props) {
                 margin: '10px',
             }}>
                 <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+
                     backgroundColor: '#D9D9D9',
                     width: '300px',
                     height: '300px',
                     borderRadius: '10px',
 
+
                 }}>
+                    <img src={`data:image/png;base64, ${image}`} alt="Test" width='100%' height='auto'/>
                 </Box>
 
                 <Box sx={{
@@ -244,26 +261,26 @@ export function ProductCover(props) {
                     flexDirection: 'column',
 
                     fontSize: '20px',
-                    
+
                     margin: '20px',
                     marginLeft: '40px',
                 }}>
                     <Box sx={{
                         marginBottom: '2px',
                     }}>
-                        Product A
+                        {name}
                     </Box>
                     <Box sx={{
                         marginBottom: '2px',
                     }}>
-                        $ 100
+                        $ {price}
                     </Box>
-                    <Rating rating={4} />
+                    <Rating rating={rating} />
                     <Box sx={{
                         marginTop: 'auto',
                         marginBottom: '0px',
                     }}>
-                        Company Name
+                        Manufacturer: {brand}
                     </Box>
                 </Box>
             </Box>

@@ -6,17 +6,43 @@ import { ProductCover, ProductInfoBody, ProductInfoProCon, SearchOptions, Search
 import { SITE_URL } from "../URL/url";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 
 function Product(props) {
+    const { id } = useParams();
+    
+    const [fetchProductData, setFetchProductData] = useState([]);
+    const [fetchProductType, setFetchProductType] = useState([]);
+    const [fetchProductBrand, setFetchProductBrand] = useState([]);
+    useEffect(()=>{
+        axios.get(SITE_URL+"/product/allProduct").then((res)=>{
+            setFetchProductData(res.data);
+        }).catch((err)=>{
+            console.log("Error: "+err);
+        });
+
+        axios.get(SITE_URL+"/product/brands").then((res)=>{
+            setFetchProductBrand(res.data);
+        }).catch((err)=>{
+            console.log("Error: "+err);
+        });
+
+        axios.get(SITE_URL+"/product/productType").then((res)=>{
+            setFetchProductType(res.data);
+        }).catch((err)=>{
+            console.log("Error: "+err);
+        });
+    },[])
+
     const [fetchData, setFetchData] = useState([]);
     useEffect(() => {
-        axios.get(SITE_URL + "/product/1").then((res) => {
+        axios.get(SITE_URL + `/product/${id}`).then((res) => {
             setFetchData(res.data);
         }).catch((err) => {
             console.log("Error: " + err);
         });
-    }, [])
+    }, []);
 
     return (
         <Box sx={{
@@ -43,7 +69,7 @@ function Product(props) {
                 <Box sx={{
                     width: '90%',
                 }}>
-                    <SearchOptions />
+                    <SearchOptions brands={fetchProductBrand} types={fetchProductType}/>
                 </Box>
 
                 <Box sx={{
@@ -51,9 +77,9 @@ function Product(props) {
                     marginTop: '20px',
                     width: '80%',
                 }}>
-                    <ProductCover />
+                    <ProductCover data={fetchData}/>
                 </Box>
-                <img src={`data:image/png;base64, ${fetchData.image}`} alt="Test"/>
+                
 
                 <Box sx={{
                     color: '#000000',
